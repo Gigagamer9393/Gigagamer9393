@@ -1,0 +1,74 @@
+ @echo off 
+ color 4
+ CLS
+ ECHO.
+ ECHO =============================
+ ECHO please wait
+ ECHO =============================
+:init
+ setlocal DisableDelayedExpansion
+ set cmdInvoke=1
+ set winSysFolder=System32
+ set "batchPath=%~dpnx0"
+ rem this works also from cmd shell, other than %~0
+ for %%k in (%0) do set batchName=%%~nk
+ set "vbsGetPrivileges=%temp%\OEgetPriv_%batchName%.vbs"
+ setlocal EnableDelayedExpansion
+
+:checkPrivileges
+  NET FILE 1>NUL 2>NUL
+  if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
+
+:getPrivileges
+  if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
+  ECHO.
+  ECHO **************************************
+  ECHO Invoking UAC for Privilege Escalation
+  ECHO **************************************
+
+  ECHO Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
+  ECHO args = "ELEV " >> "%vbsGetPrivileges%"
+  ECHO For Each strArg in WScript.Arguments >> "%vbsGetPrivileges%"
+  ECHO args = args ^& strArg ^& " "  >> "%vbsGetPrivileges%"
+  ECHO Next >> "%vbsGetPrivileges%"
+  
+  if '%cmdInvoke%'=='1' goto InvokeCmd 
+
+  ECHO UAC.ShellExecute "!batchPath!", args, "", "runas", 1 >> "%vbsGetPrivileges%"
+  goto ExecElevation
+
+:InvokeCmd
+  ECHO args = "/c """ + "!batchPath!" + """ " + args >> "%vbsGetPrivileges%"
+  ECHO UAC.ShellExecute "%SystemRoot%\%winSysFolder%\cmd.exe", args, "", "runas", 1 >> "%vbsGetPrivileges%"
+
+:ExecElevation
+ "%SystemRoot%\%winSysFolder%\WScript.exe" "%vbsGetPrivileges%" %*
+ exit /B
+
+:gotPrivileges
+ setlocal & cd /d %~dp0
+ if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
+
+title Recall off
+echo Wir werden die Zusatzfunktion von Microsoft Windows ( Recall ) Testen und auf Funktionalität komplett deaktivieren lassen sie bitte den Vorgang durchlaufen es dauert nicht lange !!! We will test the additional function of Microsoft Windows (Recall) and deactivate functionality completely. Please let the process go through, it won't take long!!!
+@ping -n 25 localhost> nul
+DISM /Online /Get-FeatureInfo /FeatureName:Recall
+@ping -n 10 localhost> nul
+color 9
+DISM /Online /Disable-Feature /FeatureName:Recall 
+@ping -n 10 localhost> nul
+DISM /Online /Get-FeatureInfo /FeatureName:Recall
+@ping -n 20 localhost> nul
+echo DNS Cache wird noch Bereinigt einen Moment
+@ping -n 20 localhost> nul
+color 4
+ipconfig /flushdns
+@ping -n 20 localhost> nul
+echo Wir bereinigen noch den temp Ordner einen Moment
+@ping -n 20 localhost> nul
+del /s /f /q %Temp%\*.*
+for /f %%f in ('dir /ad /b %Temp%\') do rd /s /q %Temp%\%%f
+@ping -n 20 localhost> nul
+echo Vorgang abgeschlossen wird in 20 sek geschlossen
+@ping -n 20 localhost> nul
+exit
