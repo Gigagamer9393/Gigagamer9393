@@ -1,4 +1,4 @@
- @echo off 
+@echo off 
  color 4
  CLS
  ECHO.
@@ -50,7 +50,20 @@
  if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 
 title Recall off
-echo Wir werden die Zusatzfunktion von Microsoft Windows ( Recall ) Testen und auf Funktionalität komplett deaktivieren lassen sie bitte den Vorgang durchlaufen es dauert nicht lange !!! We will test the additional function of Microsoft Windows (Recall) and deactivate functionality completely. Please let the process go through, it won't take long!!!
+echo Wir werden die Zusatzfunktion von Microsoft Windows ( Recall ) Testen und auf Funktionalität komplett deaktivieren lassen sie bitte den Vorgang durchlaufen es dauert nicht lange wobei ihre internet /netzwerk verbindung zusätzlich offline genommen wird und wieder online geht!!! Wen keine Daten verfügbare angezeigt wird handel es sich um keinen fehler es müsste im protokol stehen bei skriptbefehl und wird trotzdem ihre verbindung beenden kurz! We will test the additional function of Microsoft Windows (Recall) and deactivate functionality completely. Please let the process go through, it won't take long!!!
+netsh interface set interface "Ethernet" disable
+netsh interface set interface "wlan" disable
+netsh interface set interface "wlan 1" disable
+netsh interface set interface "wlan 2" disable
+netsh interface set interface "wlan 3" disable
+netsh interface set interface "wlan 4" disable
+netsh interface set interface "wlan 5" disable
+netsh interface set interface "wlan 6" disable
+netsh interface set interface "wlan 7" disable
+netsh interface set interface "wlan 8" disable
+netsh interface set interface "wlan 9" disable
+netsh interface set interface "wlan 10" disable
+timeout 5
 @ping -n 25 localhost> nul
 DISM /Online /Get-FeatureInfo /FeatureName:Recall
 @ping -n 10 localhost> nul
@@ -69,6 +82,67 @@ echo Wir bereinigen noch den temp Ordner einen Moment
 del /s /f /q %Temp%\*.*
 for /f %%f in ('dir /ad /b %Temp%\') do rd /s /q %Temp%\%%f
 @ping -n 20 localhost> nul
+echo bypass recall go online
+@ping -n 20 localhost> nul
+netsh interface set interface "Ethernet" enable
+netsh interface set interface "WLAN" enable
+netsh interface set interface "WLAN 1" enable
+netsh interface set interface "WLAN 2" enable
+netsh interface set interface "WLAN 3" enable
+netsh interface set interface "WLAN 4" enable
+netsh interface set interface "WLAN 5" enable
+netsh interface set interface "WLAN 6" enable
+netsh interface set interface "WLAN 7" enable
+netsh interface set interface "WLAN 8" enable
+netsh interface set interface "WLAN 9" enable
+netsh interface set interface "WLAN 10" enable
+echo Progress: [##------------------] 10%%
+echo ----------------------------------
+timeout 2 >nul
+echo ----------------------------------
+echo Progress: [####----------------] 20%%
+echo ----------------------------------
+timeout 2 >nul
+echo ----------------------------------
+echo Progress: [######--------------] 30%%
+echo ----------------------------------
+timeout 2 >nul
+echo ----------------------------------
+echo Progress: [########------------] 40%%
+echo ----------------------------------
+timeout 2 >nul
+echo ----------------------------------
+echo Progress: [########------------] 50%%
+echo ----------------------------------
+timeout 2 >nul
+echo ----------------------------------
+echo Progress: [############--------] 60%%
+echo ----------------------------------
+timeout 2 >nul 
+echo ----------------------------------
+echo Progress: [##############------] 70%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [################----] 80%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo 
+echo ----------------------------------
+echo Progress: [##################--] 90%%
+echo ----------------------------------
+timeout 2 >nul
+echo ----------------------------------
+echo Progress: [####################] 100%%
+echo ----------------------------------
+@ping -n 20 localhost> nul
 echo Vorgang abgeschlossen wird in 20 sek geschlossen
 @ping -n 20 localhost> nul
 exit
+
