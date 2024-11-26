@@ -1,4 +1,4 @@
-@echo off 
+ @echo off 
  color 4
  CLS
  ECHO.
@@ -50,6 +50,18 @@
  if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 
 title Recall off
+echo   ********  **                                                           **       ******* 
+echo  **//////**//   *****                                                   /**      /**////**
+echo **      //  ** **///**  ******   ******  ******   ******  ******  ******/**      /**   /**
+echo/**         /**/**  /** //////** //**//* //////** ////**  **////**//**//*/**      /******* 
+echo/**    *****/**//******  *******  /** /   *******    **  /**   /** /** / /**      /**////  
+echo//**  ////**/** /////** **////**  /**    **////**   **   /**   /** /**   /**      /**      
+echo //******** /**  ***** //********/***   //******** ******//****** /***   /********/**      
+echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    //////// //   
+@ping -n 5 localhost> nul
+time/t
+date/t
+@ping -n 5 localhost> nul
 echo Wir werden die Zusatzfunktion von Microsoft Windows ( Recall ) Testen und auf Funktionalität komplett deaktivieren lassen sie bitte den Vorgang durchlaufen es dauert nicht lange wobei ihre internet /netzwerk verbindung zusätzlich offline genommen wird und wieder online geht!!! Wen keine Daten verfügbare angezeigt wird handel es sich um keinen fehler es müsste im protokol stehen bei skriptbefehl und wird trotzdem ihre verbindung beenden kurz! We will test the additional function of Microsoft Windows (Recall) and deactivate functionality completely. Please let the process go through, it won't take long!!!
 netsh interface set interface "Ethernet" disable
 netsh interface set interface "wlan" disable
