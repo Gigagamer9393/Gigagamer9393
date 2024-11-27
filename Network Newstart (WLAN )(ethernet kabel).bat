@@ -1,6 +1,7 @@
-@echo off 
- color 4
- CLS
+@echo off
+color 4
+title Newstart
+CLS
  ECHO.
  ECHO =============================
  ECHO please wait
@@ -48,8 +49,6 @@
 :gotPrivileges
  setlocal & cd /d %~dp0
  if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
-
-title : Network newstart
 echo   ********  **                                                           **       ******* 
 echo  **//////**//   *****                                                   /**      /**////**
 echo **      //  ** **///**  ******   ******  ******   ******  ******  ******/**      /**   /**
@@ -58,89 +57,10 @@ echo/**    *****/**//******  *******  /** /   *******    **  /**   /** /** / /**
 echo//**  ////**/** /////** **////**  /**    **////**   **   /**   /** /**   /**      /**      
 echo //******** /**  ***** //********/***   //******** ******//****** /***   /********/**      
 echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    //////// //   
-@ping -n 5 localhost> nul
 time/t
 date/t
-netsh interface set interface "Ethernet" disable
-netsh interface set interface "wlan" disable
-timeout 5
-netsh interface set interface "Ethernet" enable
-netsh interface set interface "WLAN" enable
-echo ----------------------------------
-echo Progress: [##------------------] 10%%
-echo ----------------------------------
-timeout 2 >nul
-cls
-echo.
-echo.
-echo
-echo ----------------------------------
-echo Progress: [####----------------] 20%%
-echo ----------------------------------
-timeout 1 >nul
-cls
-echo.
-echo.
-echo 
-echo ----------------------------------
-echo Progress: [######--------------] 30%%
-echo ----------------------------------
-timeout 2 >nul
-cls
-echo.
-echo.
-echo
-echo ----------------------------------
-echo Progress: [########------------] 40%%
-echo ----------------------------------
-timeout 1 >nul
-cls
-echo.
-echo.
-echo
-echo ----------------------------------
-echo Progress: [##########----------] 50%%
-echo ----------------------------------
-timeout 2 >nul
-cls
-echo.
-echo.
-echo
-echo ----------------------------------
-echo Progress: [############--------] 60%%
-echo ----------------------------------
-timeout 1 >nul
-cls
-echo.
-echo.
-echo
-echo ----------------------------------
-echo Progress: [##############------] 70%%
-echo ----------------------------------
-timeout 2 >nul
-cls
-echo.
-echo.
-echo 
-echo ----------------------------------
-echo Progress: [################----] 80%%
-echo ----------------------------------
-timeout 1 >nul
-cls
-echo.
-echo.
-echo
-echo ----------------------------------
-echo Progress: [##################--] 90%%
-echo ----------------------------------
-timeout 2 >nul
-cls
-echo.
-echo.
-echo
-echo ----------------------------------
-echo Progress: [####################] 100%%
-echo ----------------------------------
-timeout 10
-echo successfully
-exit
+@ping -n 5localhost> nu
+echo newstart 10sec 
+@ping -n 10localhost> nul
+timeout 10 
+shutdown /r /t 0
