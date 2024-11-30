@@ -59,8 +59,6 @@ echo //******** /**  ***** //********/***   //******** ******//****** /***   /**
 echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    //////// //   
 time/t
 date/t
-@ping -n 5localhost> nu
 echo newstart 10sec 
-@ping -n 10localhost> nul
 timeout 10 
 shutdown /r /t 0
