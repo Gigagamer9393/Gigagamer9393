@@ -59,8 +59,9 @@ echo //******** /**  ***** //********/***   //******** ******//****** /***   /**
 echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    //////// //   
 time/t
 date/t
-@ping -n 5 localhost> nul
+echo warten sie 5 sekunden
+timeout 5 > nul
 del /s /f /q %Temp%\*.*
 for /f %%f in ('dir /ad /b %Temp%\') do rd /s /q %Temp%\%%f
-@ping -n 5 localhost> nul
+timeout 10 > nul
 exit
