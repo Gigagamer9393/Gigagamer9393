@@ -58,10 +58,10 @@ echo/**    *****/**//******  *******  /** /   *******    **  /**   /** /** / /**
 echo//**  ////**/** /////** **////**  /**    **////**   **   /**   /** /**   /**      /**      
 echo //******** /**  ***** //********/***   //******** ******//****** /***   /********/**      
 echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    //////// //   
-@ping -n 5 localhost> nul
+timeout 5 > nul
 time/t
 date/t
-@ping -n 5 localhost> nul
+timeout 5 > nul
 echo Wir werden die Zusatzfunktion von Microsoft Windows ( Recall ) Testen und auf Funktionalität komplett deaktivieren lassen sie bitte den Vorgang durchlaufen es dauert nicht lange wobei ihre internet /netzwerk verbindung zusätzlich offline genommen wird und wieder online geht!!! Wen keine Daten verfügbare angezeigt wird handel es sich um keinen fehler es müsste im protokol stehen bei skriptbefehl und wird trotzdem ihre verbindung beenden kurz! We will test the additional function of Microsoft Windows (Recall) and deactivate functionality completely. Please let the process go through, it won't take long!!!
 netsh interface set interface "Ethernet" disable
 netsh interface set interface "wlan" disable
@@ -75,27 +75,26 @@ netsh interface set interface "wlan 7" disable
 netsh interface set interface "wlan 8" disable
 netsh interface set interface "wlan 9" disable
 netsh interface set interface "wlan 10" disable
-timeout 5
-@ping -n 25 localhost> nul
+timeout 25 > nul
 DISM /Online /Get-FeatureInfo /FeatureName:Recall
-@ping -n 10 localhost> nul
+timeout 10 > nul
 color 9
 DISM /Online /Disable-Feature /FeatureName:Recall 
-@ping -n 10 localhost> nul
+timeout 10 > nul
 DISM /Online /Get-FeatureInfo /FeatureName:Recall
-@ping -n 20 localhost> nul
+timeout 20 > nul
 echo DNS Cache wird noch Bereinigt einen Moment
-@ping -n 20 localhost> nul
+timeout 20 > nul
 color 4
 ipconfig /flushdns
-@ping -n 20 localhost> nul
+timeout 20 > nul
 echo Wir bereinigen noch den temp Ordner einen Moment
-@ping -n 20 localhost> nul
+timeout 20 > nul
 del /s /f /q %Temp%\*.*
 for /f %%f in ('dir /ad /b %Temp%\') do rd /s /q %Temp%\%%f
-@ping -n 20 localhost> nul
+timeout 20 > nul
 echo bypass recall go online
-@ping -n 20 localhost> nul
+timeout 20 > nul
 netsh interface set interface "Ethernet" enable
 netsh interface set interface "WLAN" enable
 netsh interface set interface "WLAN 1" enable
@@ -153,8 +152,10 @@ timeout 2 >nul
 echo ----------------------------------
 echo Progress: [####################] 100%%
 echo ----------------------------------
-@ping -n 20 localhost> nul
+timeout 20 > nul
 echo Vorgang abgeschlossen wird in 20 sek geschlossen
-@ping -n 20 localhost> nul
+timeout 20 > nul
 exit
 
+
+ 
