@@ -59,8 +59,9 @@ echo //******** /**  ***** //********/***   //******** ******//****** /***   /**
 echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    //////// //   
 time/t
 date/t
-@ping -n 5 localhost> nul
+echo warten sie 5 sekunden
+timeout 2 > nul
 ipconfig /flushdns
-@ping -n 5 localhost> nul
+timeout 20 > nul
 exit
 
