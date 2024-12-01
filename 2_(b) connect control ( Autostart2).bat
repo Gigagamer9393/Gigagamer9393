@@ -61,12 +61,17 @@ echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    ///
 timeout 5 >nul
 time/t
 date/t
-timeout 5 >nul
+timeout 10 >nul
 
 netsh interface Show interface
 
-timeout 50 >nul
+timeout 200 >nul
+
+netsh interface Show interface
+
+timeout 10
 exit
+
 
 
 
