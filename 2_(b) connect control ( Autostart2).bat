@@ -58,12 +58,15 @@ echo/**    *****/**//******  *******  /** /   *******    **  /**   /** /** / /**
 echo//**  ////**/** /////** **////**  /**    **////**   **   /**   /** /**   /**      /**      
 echo //******** /**  ***** //********/***   //******** ******//****** /***   /********/**      
 echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    //////// //   
-@ping -n 5 localhost> nul
+timeout 5 >nul
 time/t
 date/t
-@ping -n 5 localhost> nul
+timeout 5 >nul
 
 netsh interface Show interface
 
-@ping -n 50 localhost> nu
+timeout 50 >nul
 exit
+
+
+
