@@ -57,14 +57,14 @@ echo/**    *****/**//******  *******  /** /   *******    **  /**   /** /** / /**
 echo//**  ////**/** /////** **////**  /**    **////**   **   /**   /** /**   /**      /**      
 echo //******** /**  ***** //********/***   //******** ******//****** /***   /********/**      
 echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    //////// // 
-@ping -n 5 localhost> nul
+timeout 5 > nul 
 time/t
 date/t
-@ping -n 5 localhost> nul
+timeout 5 > nul 
 echo wir trennen ihre internet verbindung ( zur sicherheit ) bitte warten !
-@ping -n 25 localhost> nul
+timeout 25 > nul 
 netsh interface Show interface
-@ping -n 20 localhost> nul
+timeout 20 > nul 
 netsh interface set interface "wlan" disable
 netsh interface set interface "wlan 1" disable
 netsh interface set interface "wlan 2" disable
@@ -76,30 +76,29 @@ netsh interface set interface "wlan 7" disable
 netsh interface set interface "wlan 8" disable
 netsh interface set interface "wlan 9" disable
 netsh interface set interface "wlan 10" disable
-timeout 5
-@ping -n 25 localhost> nul
+timeout 15 > nul 
 
 title Microsoft Windows System Check Scann
 echo Wir versuchen beschädigte Microsoft Windows Daten auf fehler zu Scannen bitte warten sie !!! / We are trying to scan corrupted Microsoft Windows data for errors. Please wait
 color 9
-@ping -n 5 localhost> nul
+timeout 5 > nul 
 sfc/scannow
-@ping -n 25 localhost> nul
+timeout 25 > nul 
 echo Führen sie die Überprüfung aus ( Digitale Signierte ) Treiber ( SigScann ) bitte warten sie !!!
-@ping -n 25 localhost> nul
+timeout 25 > nul 
 sigverif
-@ping -n 25 localhost> nul
+timeout 25 > nul 
 echo Es wird auf Beschädigte Windows Updatedatein Überprüft !!!
-@ping -n 25 localhost> nul
+timeout 25 > nul 
 color 4
 DISM.exe /Online /Cleanup-image /Restorehealth
 echo Voller Virenscann wird durchgeführt warten sie Bitte
-@ping -n 25 localhost> nul
+timeout 25 > nul 
 cd C:\ProgramData\Microsoft\Windows Defender\Platform\4*
 mpcmdrun -scan -scantype 2
-@ping -n 25 localhost> nul
+timeout 25 > nul 
 echo internet Verbindung wird wieder hergestellt einen moment bitte
-@ping -n 30 localhost> nul
+timeout 30 > nul 
 netsh interface set interface "Ethernet" enable
 netsh interface set interface "WLAN" enable
 netsh interface set interface "WLAN 1" enable
@@ -158,16 +157,22 @@ echo ----------------------------------
 echo Progress: [####################] 100%%
 echo ----------------------------------
 echo Temp o DNS Ordner Clean und warten sie einen moment der Komplette vorgang wird Automatisch geschlossen !!! / Temp o DNS Folder Clean and wait a moment for the complete process to close automatically
-@ping -n 15 localhost> nul
+timeout 15 > nul 
 %temp%
-@ping -n 15 localhost> nul
+timeout 15 > nul 
 ipconfig /flushdns 
-@ping -n 25 localhost> nul
+timeout 25 > nul 
 color 9
 echo scannen sie ihren Arbeitsspeicher / Scan your RAM ( RAM ) bitte warten sie einen moment und wählen sie anschließent beim Nächsten start aus und führen sie den scann aus 
-@ping -n 25 localhost> nul
+timeout 25 > nul 
 mdsched
-@ping -n 15 localhost> nul
+timeout 10
 Exit
+
+
+ 
+
+
+
 
 
