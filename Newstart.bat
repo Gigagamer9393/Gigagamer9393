@@ -60,5 +60,5 @@ echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    ///
 time/t
 date/t
 echo newstart 10sec 
-timeout 10 
+timeout 10 > nul 
 shutdown /r /t 0
