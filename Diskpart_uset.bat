@@ -63,3 +63,4 @@ echo geben sie select disk eine verfügbare Datenträgerpartiton auszuwählen
 echo oder geben sie einen help ( hilfe ) befehl ein
 Diskpart 
 list disk
+
