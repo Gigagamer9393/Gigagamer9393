@@ -24,7 +24,7 @@ CLS
   if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
   ECHO.
   ECHO **************************************
-  ECHO GigarazorLP Skript tray icon go to all
+  ECHO GigarazorLP Skript tray icon go to manuall
   ECHO **************************************
 
   ECHO Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
@@ -161,3 +161,4 @@ echo.
 echo.
 reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify" /v "SystemTrayChevronVisibility" /t REG_DWORD /d "1" /f
 exit
+
