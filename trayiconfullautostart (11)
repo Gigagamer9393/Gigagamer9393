@@ -71,7 +71,7 @@ timeout 5 >nul
 time/t
 date/t
 timeout 10 >nul
-echo alle symbole werden in kürze angezeigt bitte warten
+echo alle symboleinstellungen werden kürzlich abgerufen bitte warten
 timeout 5 >nul
 echo Debugging
 timeout 60 >null
@@ -88,7 +88,7 @@ echo [2]manually02
 
 
 set /p asw=
-echo Bitte eine Auswahl treffen und noch einnmal bestätigen
+echo Bitte eine Auswahl treffen und noch einnmal bestätigen ( Später mit entertaste bestätigen )
 
 if %asw%==1 goto Auswahl1
 set /p asw=
@@ -179,4 +179,3 @@ echo ----------------------------------
 echo Progress: [####################] 100%%
 echo ----------------------------------
 exit
-
