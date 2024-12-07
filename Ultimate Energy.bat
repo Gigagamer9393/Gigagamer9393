@@ -1,4 +1,4 @@
-%echo off
+@echo off
 Color 4
 title Windows 10 und Windows 11: Ultimative Energy Option enable
 echo Windows 10 und Windows 11: Ultimative Leistung wird aktiviert [ MANUELL ] Einstellbar
