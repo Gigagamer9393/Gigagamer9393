@@ -4,7 +4,7 @@ title tray icon 0
 CLS
  ECHO.
  ECHO =============================
- ECHO tray icon chancer
+ ECHO tray icon chancer ( Autostart ) 
  ECHO =============================
 :init
  setlocal DisableDelayedExpansion
