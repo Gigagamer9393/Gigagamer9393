@@ -24,7 +24,7 @@ CLS
   if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
   ECHO.
   ECHO **************************************
-  ECHO GigarazorLP Skript tray icon go to full & manually
+  ECHO GigarazorLP Skript tray icon go to all
   ECHO **************************************
 
   ECHO Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
@@ -71,38 +71,8 @@ timeout 5 >nul
 time/t
 date/t
 timeout 10 >nul
-echo alle symboleinstellungen werden kürzlich abgerufen bitte warten
-timeout 5 >nul
-echo Debugging
-timeout 60 >null
-
-:Auswahlmenu
-cls
-echo.
-echo Auswahlmenue
-echo ===========
-echo.
-echo [1]full01
-echo [2]manually02
-
-
-
-set /p asw=
-echo Bitte eine Auswahl treffen und noch einnmal bestätigen ( Später mit entertaste bestätigen )
-
-if %asw%==1 goto Auswahl1
-set /p asw=
-reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify" /v "SystemTrayChevronVisibility" /t REG_DWORD /d "0" /f
-::goto
-
-
-if %asw%==2 goto Auswahl2
-set /p asw=
-reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify" /v "SystemTrayChevronVisibility" /t REG_DWORD /d "1" /f
-::goto
-
-::goto
-timeout 5 >nul
+echo alle symbole werden in kürze angezeigt bitte warten
+timeout 60 >nul
 echo ----------------------------------
 echo Progress: [##------------------] 10%%
 echo ----------------------------------
@@ -178,4 +148,25 @@ echo
 echo ----------------------------------
 echo Progress: [####################] 100%%
 echo ----------------------------------
+GOTO END
+
+:END
+cls
+echo.
+echo.
+echo alle systemsymbole werden angezeigt ( erzwungen ) 
+echo ----------------------------------
+echo Progress: [####################] 100%%
+echo.
+echo 2 alle symbole und auswahl 01 manuell
+echo [1]Auswahl1
+echo [2]Auswahl2
+set asw=0
+set /p asw="Bitte eine Auswahl treffen: "
+
+if %asw%==1 goto Auswahl1if %asw%==1 goto Auswahl1
+reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify" /v "SystemTrayChevronVisibility" /t REG_DWORD /d "0" /f
+
+if %asw%==2 goto Auswahl2if %asw%==2 goto Auswahl2 
+reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\TrayNotify" /v "SystemTrayChevronVisibility" /t REG_DWORD /d "1" /f 
 exit
