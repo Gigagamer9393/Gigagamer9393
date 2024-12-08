@@ -50,6 +50,61 @@ Color 2
  setlocal & cd /d %~dp0
  if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 
+:3
+cls
+title GigarazorLP Server Build 1.00
+Color b
+echo Bitte geben sie ihren Username [Account] ein oder Fragen sie den Entwickler.
+echo Please enter your username [Account] or ask the developer
+echo [Status for user -[PR]-
+echo oder verlasse mit "exit"
+set Input=
+set /p Username="Username: "
+if "%Username%"=="?" goto 4
+if "%Username%"=="exit" goto exit
+cls
+Color C
+echo Falscher Username!
+echo Bitte geben sie den Richtigen Usernamen ein.
+ping localhost -n 3 >nul
+goto :3
+
+:4
+
+timeout 10 >nul
+echo                         ....:-.  ...                    
+echo                 ........::=+=.  :=---:.                 
+echo              .....:--++++++=.  :+=-:::-=-.              
+echo            .:...-=+++++=--:   -=--=-:--:-=-.            
+echo          .::::=+++=-.       .-=--=-=+*++=-:=-.          
+echo         ::::=+*+-.         .---:--+=++++++=--=:         
+echo        :--=++=-           .--:::==+++*-.-*++-:--.       
+echo       ---=++=.           .-::::-=-=++:   .+*=-.--       
+echo      :--=++=.           .:....-===++.      =*=-:=:      
+echo     :===+++            ::.::..=--=-...:-:   =*=--=:     
+echo    .===**+.           :-:-:-=-=-:::-+*-     .**+-==.    
+echo    :===++=          .---==+++==+=++*=.       =#+=++:    
+echo    -=++++:         :--=++++++++++*+:         :#*+=*=    
+echo    -=++++.        :+=+*+=-==+***+:           .***=*+    
+echo    =+*++=.       -**=-. .--=*#*-     .       .#***#*    
+echo    -++==+:      ::.   .-=--**+:..:-=-.       :*+=*#+    
+echo    -++===-           :----==-:--+#+.         =#++#%-    
+echo    .+++=--.        :====+++++*##+:          .**+###.    
+echo     -+++---      .-++*###****#*-            +*+*#%+     
+echo      =++=--:    :+**+++#*##%#=             =+=+*##.     
+echo      .++*=-::..::.   .++*#%=.            .=+=+#%#.      
+echo       .++++-:::     :+*##+.            .:==+*#%#.       
+echo         =*++==+=.  -*#%*:            .:===+###*.        
+echo          :****+.  =*##-           .:-===+*#%#-          
+echo            -*=  .=#%= .::::..::----=-=+##%#=.           
+echo                .+#=. -++-------==+**###%*-.             
+echo               :*+. :+#########%#%%%%#+-.                
+echo              -+:   .-=+*######**+=-.                    
+echo            .=-                                          
+echo           .:                                            
+echo v1.00 build account checker.
+timeout 5 >nul
+
 :0
 cls
 title GigarazorLP Server Build 1.00
@@ -58,7 +113,7 @@ echo Bitte geben das Passwort ein.
 echo oder verlasse mit "exit"
 set Input=
 set /p Passwort="Passwort: "
-if "%Passwort%"=="Zimpern_01" goto 1
+if "%Passwort%"=="?" goto 1
 if "%Passwort%"=="exit" goto exit
 cls
 Color C
@@ -281,8 +336,9 @@ echo.
 echo Auswahlmenue / Selectionmenu to Server
 echo ===========
 echo.
-echo ( Was ist es )
-echo ( Was ist es ) 
+echo BAD u CHEAT
+echo [NSC] Musik
+echo YouTube Channal 
 
 
 set asw=0
@@ -290,11 +346,13 @@ set /p asw="Bitte eine Auswahl treffen: "
 
 
 if %asw%==0 goto Auswahl0if %asw%==0 goto Auswahl0
-start chrome ( link ) 
-
+start chrome https://os5.mycloud.com/action/share/a9bdd5ee-32bd-465b-8788-1b5de182d265 
 
 if %asw%==1 goto Auswahl1if %asw%==1 goto Auswahl1
-start chrome ( link ) 
+start chrome https://os5.mycloud.com/action/share/acd32813-4232-41b7-8091-98213bea1816
+
+if %asw%==2 goto Auswahl1if %asw%==2 goto Auswahl2
+start Chrome https://www.youtube.com/@gigarazorlp1911
 
 goto END
 
