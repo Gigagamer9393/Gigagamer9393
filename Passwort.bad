@@ -10,7 +10,34 @@ echo Bitte geben das Passwort ein.
 echo oder verlasse mit "exit"
 set Input=
 set /p Passwort="Passwort: "
-if "%Passwort%"=="1234" goto 1
+if "%Passwort%"=="456" goto 1
+if "%Passwort%"=="exit" goto exit
+cls
+Color C
+echo Falsches Passwort!
+echo Bitte gebe das Richtige Passwort ein.
+ping localhost -n 3 >nul
+goto :0
+
+:1
+
+echo du hast es geschafft
+pause
+
+::exit
+exit@echo off
+
+
+
+:0
+cls
+title Passwort
+Color b
+echo Bitte geben das Passwort ein.
+echo oder verlasse mit "exit"
+set Input=
+set /p Passwort="Passwort: "
+if "%Passwort%"=="456" goto 1
 if "%Passwort%"=="exit" goto exit
 cls
 Color C
