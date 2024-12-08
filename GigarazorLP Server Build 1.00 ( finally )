@@ -346,13 +346,13 @@ set /p asw="Bitte eine Auswahl treffen: "
 
 
 if %asw%==0 goto Auswahl0if %asw%==0 goto Auswahl0
-start chrome https://os5.mycloud.com/action/share/a9bdd5ee-32bd-465b-8788-1b5de182d265 
+start chrome ( Webstite ) 
 
 if %asw%==1 goto Auswahl1if %asw%==1 goto Auswahl1
-start chrome https://os5.mycloud.com/action/share/acd32813-4232-41b7-8091-98213bea1816
+start chrome ( website )
 
 if %asw%==2 goto Auswahl1if %asw%==2 goto Auswahl2
-start Chrome https://www.youtube.com/@gigarazorlp1911
+start Chrome ( Website )
 
 goto END
 
