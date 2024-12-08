@@ -1,0 +1,307 @@
+@echo off
+title GigarazorLP Server [Server Bulding 1.00 to Connect]
+Color 2
+ CLS
+ ECHO.
+ ECHO =============================
+ ECHO Gigarazor Server build v1.00
+ ECHO =============================
+:init
+ setlocal DisableDelayedExpansion
+ set cmdInvoke=1
+ set winSysFolder=System32
+ set "batchPath=%~dpnx0"
+ rem this works also from cmd shell, other than %~0
+ for %%k in (%0) do set batchName=%%~nk
+ set "vbsGetPrivileges=%temp%\OEgetPriv_%batchName%.vbs"
+ setlocal EnableDelayedExpansion
+
+:checkPrivileges
+  NET FILE 1>NUL 2>NUL
+  if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
+
+:getPrivileges
+  if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
+  ECHO.
+  ECHO **************************************
+  ECHO Gigarazor Server build v1.00
+  ECHO **************************************
+
+  ECHO Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
+  ECHO args = "ELEV " >> "%vbsGetPrivileges%"
+  ECHO For Each strArg in WScript.Arguments >> "%vbsGetPrivileges%"
+  ECHO args = args ^& strArg ^& " "  >> "%vbsGetPrivileges%"
+  ECHO Next >> "%vbsGetPrivileges%"
+  
+  if '%cmdInvoke%'=='1' goto InvokeCmd 
+
+  ECHO UAC.ShellExecute "!batchPath!", args, "", "runas", 1 >> "%vbsGetPrivileges%"
+  goto ExecElevation
+
+:InvokeCmd
+  ECHO args = "/c """ + "!batchPath!" + """ " + args >> "%vbsGetPrivileges%"
+  ECHO UAC.ShellExecute "%SystemRoot%\%winSysFolder%\cmd.exe", args, "", "runas", 1 >> "%vbsGetPrivileges%"
+
+:ExecElevation
+ "%SystemRoot%\%winSysFolder%\WScript.exe" "%vbsGetPrivileges%" %*
+ exit /B
+
+:gotPrivileges
+ setlocal & cd /d %~dp0
+ if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
+
+:0
+cls
+title GigarazorLP Server Build 1.00
+Color b
+echo Bitte geben das Passwort ein.
+echo oder verlasse mit "exit"
+set Input=
+set /p Passwort="Passwort: "
+if "%Passwort%"=="Zimpern_01" goto 1
+if "%Passwort%"=="exit" goto exit
+cls
+Color C
+echo Falsches Passwort!
+echo Bitte gebe das Richtige Passwort ein.
+ping localhost -n 3 >nul
+goto :0
+
+:1
+
+echo Successful / Erfolgreich
+echo ----------------------------------
+echo Progress: [##------------------] 10%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [####----------------] 20%%
+echo ----------------------------------
+timeout 1 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [######--------------] 30%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [########------------] 40%%
+echo ----------------------------------
+timeout 1 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [##########----------] 50%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [############--------] 60%%
+echo ----------------------------------
+timeout 1 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [##############------] 70%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo. 
+echo ----------------------------------
+echo Progress: [################----] 80%%
+echo ----------------------------------
+timeout 1 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [##################--] 90%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [####################] 100%%
+echo ----------------------------------
+cls
+timeout 5 >nul
+color 4
+echo   ********  **                                                           **       ******* 
+echo  **//////**//   *****                                                   /**      /**////**
+echo **      //  ** **///**  ******   ******  ******   ******  ******  ******/**      /**   /**
+echo/**         /**/**  /** //////** //**//* //////** ////**  **////**//**//*/**      /******* 
+echo/**    *****/**//******  *******  /** /   *******    **  /**   /** /** / /**      /**////  
+echo//**  ////**/** /////** **////**  /**    **////**   **   /**   /** /**   /**      /**      
+echo //******** /**  ***** //********/***   //******** ******//****** /***   /********/**      
+echo  ////////  //  /////   //////// ///     //////// //////  //////  ///    //////// //   
+timeout 5 >nul
+time/t
+date/t
+echo Gigarazor Server loading
+echo Only with Google Chrome
+timeout 10
+cls
+echo ----------------------------------
+echo Progress: [##------------------] 10%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [####----------------] 20%%
+echo ----------------------------------
+timeout 1 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [######--------------] 30%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [########------------] 40%%
+echo ----------------------------------
+timeout 1 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [##########----------] 50%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [############--------] 60%%
+echo ----------------------------------
+timeout 1 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [##############------] 70%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo. 
+echo ----------------------------------
+echo Progress: [################----] 80%%
+echo ----------------------------------
+timeout 1 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [##################--] 90%%
+echo ----------------------------------
+timeout 2 >nul
+cls
+echo.
+echo.
+echo ----------------------------------
+echo Progress: [####################] 100%%
+echo ----------------------------------
+cls
+echo.
+echo.
+echo please wait starting Server
+echo ----------------------------------
+echo Progress: [####################] 100%%
+echo Starting Server [ Gigarazor UI ]
+timeout 5 >nul
+cls
+color 1e
+echo  ********                                          **              **  **      **
+echo **//////                                          /**             //  /**     /**
+echo /**         *****  ****** **    **  *****  ******  /**      **   ** ** /**     /**
+echo /********* **///**//**//*/**   /** **///**//**//*  /****** /**  /**/** /**  ******
+echo////////**/******* /** / //** /** /******* /** /   /**///**/**  /**/** /** **///**
+echo       /**/**////  /**    //****  /**////  /**     /**  /**/**  /**/** /**/**  /**
+echo ******** //******/***     //**   //******/***     /****** //******/** ***//******
+echo////////   ////// ///       //     ////// ///      /////    ////// // ///  //////v1.00   
+echo server time [1] 
+echo server date [2]
+time/t
+date/t
+echo wait...
+timeout 15 >nul
+echo ------------------------------------------------------------------
+echo ## ##   ###  ##  ####     ##  ##   
+echo ##   ##    ## ##   ##      ##  ##   
+echo ##   ##   # ## #   ##      ##  ##   
+echo ##   ##   ## ##    ##       ## ##   
+echo ##   ##   ##  ##   ##        ##     
+echo ##   ##   ##  ##   ##  ##    ##     
+echo ## ##   ###  ##  ### ###    ##
+echo ------------------------------------------------------------------
+echo ## ##   ###  ##  ### ##    ## ##   ##   ##  ### ###  
+echo ##   ##   ##  ##   ##  ##  ##   ##   ## ##    ##  ##  
+echo ##        ##  ##   ##  ##  ##   ##  # ### #   ##      
+echo ##        ## ###   ## ##   ##   ##  ## # ##   ## ##   
+echo ##        ##  ##   ## ##   ##   ##  ##   ##   ##      
+echo ##   ##   ##  ##   ##  ##  ##   ##  ##   ##   ##  ##  
+echo ## ##   ###  ##  #### ##   ## ##   ##   ##  ### ### 
+echo ------------------------------------------------------------------
+echo ### ##   ### ##    ## ##   ##   ##   ## ##   ### ###  ### ##   
+echo ##  ##   ##  ##  ##   ##  ##   ##  ##   ##   ##  ##   ##  ##  
+echo ##  ##   ##  ##  ##   ##  ##   ##  ####      ##       ##  ##  
+echo ## ##    ## ##   ##   ##  ## # ##   #####    ## ##    ## ##   
+echo ##  ##   ## ##   ##   ##  # ### #      ###   ##       ## ##   
+echo ##  ##   ##  ##  ##   ##   ## ##   ##   ##   ##  ##   ##  ##  
+echo ### ##   #### ##   ## ##   ##   ##   ## ##   ### ###  #### ##
+timeout 10> nul
+echo ----------------------------------------------------------------------------------------
+echo 1 or 2 The server closes automatically if an incorrect entry is made !
+echo Der Server schließt sich automatisch, wenn eine falsche eingabe getroffen wurde !
+echo Please open the correct tab and close it where you don't need it ! /
+echo Bitte öffnen Sie sie den richtigen Reiter und schließen Sie ihn, was sie ihn nicht brauchen !
+echo -----------------------------------------------------------------------------------------
+timeout 10> nul
+:Auswahlmenu
+echo.
+echo Auswahlmenue / Selectionmenu to Server
+echo ===========
+echo.
+echo ( Was ist es )
+echo ( Was ist es ) 
+
+
+set asw=0
+set /p asw="Bitte eine Auswahl treffen: "
+
+
+if %asw%==0 goto Auswahl0if %asw%==0 goto Auswahl0
+start chrome ( link ) 
+
+
+if %asw%==1 goto Auswahl1if %asw%==1 goto Auswahl1
+start chrome ( link ) 
+
+goto END
+
+:END
+
+
+echo Serverauswahl wird Automatisch geschlossen [15sek]
+echo The server selection will automatically close [15]
+timeout 15 
+exit
