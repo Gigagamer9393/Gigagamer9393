@@ -1,7 +1,8 @@
 import socket
 import threading
 import tkinter as tk
-from tkinter.scrolledtext import ScrolledText
+from tkinter.scrolledtext 
+import ScrolledText
 
 
 # Funktion für den Server
