@@ -1,0 +1,148 @@
+import socket
+import threading
+import tkinter as tk
+from tkinter.scrolledtext 
+import ScrolledText
+
+# Farben entsprechend dem Design im Bild
+BACKGROUND_COLOR = "#2E0249"
+TEXT_AREA_COLOR = "#4A0473"
+INPUT_AREA_COLOR = "#7209B7"
+TEXT_COLOR = "#E9D5FF"
+BUTTON_COLOR = "#9D4EDD"
+BUTTON_TEXT_COLOR = "#FFFFFF"
+
+# Funktion für den Server
+def start_server(host, port, output_box):
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind((host, port))
+    server_socket.listen(5)
+    output_box.insert(tk.END, f"Server gestartet auf {host}:{port}\n")
+
+    def handle_client(client_socket, client_address):
+        output_box.insert(tk.END, f"Verbindung von {client_address} hergestellt\n")
+        while True:
+            try:
+                message = client_socket.recv(1024).decode("utf-8")
+                if not message:
+                    break
+                output_box.insert(tk.END, f"{client_address}: {message}\n")
+            except:
+                break
+        client_socket.close()
+
+    def accept_connections():
+        while True:
+            client_socket, client_address = server_socket.accept()
+            threading.Thread(target=handle_client, args=(client_socket, client_address)).start()
+
+    threading.Thread(target=accept_connections, daemon=True).start()
+
+# Funktion für den Client
+def start_client(host, port, output_box):
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect((host, port))
+    output_box.insert(tk.END, f"Verbunden mit Server {host}:{port}\n")
+
+    def listen_to_server():
+        while True:
+            try:
+                message = client_socket.recv(1024).decode("utf-8")
+                if not message:
+                    break
+                output_box.insert(tk.END, f"Server: {message}\n")
+            except:
+                break
+
+    threading.Thread(target=listen_to_server, daemon=True).start()
+    return client_socket
+
+# Nachricht senden
+def send_message(socket, message, input_box, output_box):
+    if socket:
+        socket.send(message.encode("utf-8"))
+        output_box.insert(tk.END, f"Du: {message}\n")
+        input_box.delete(0, tk.END)
+
+# Hauptfunktion
+def start_chat_overlay():
+    # Initialisiere das Hauptfenster
+    window = tk.Tk()
+    window.title("Gaming Chat Overlay")
+    window.geometry("400x500")
+    window.configure(bg=BACKGROUND_COLOR)
+    window.attributes("-alpha", 0.95)  # Halbtransparenz
+
+    # Chat-History (scrollbar)
+    output_box = ScrolledText(
+        window,
+        wrap=tk.WORD,
+        state=tk.NORMAL,
+        bg=TEXT_AREA_COLOR,
+        fg=TEXT_COLOR,
+        font=("Arial", 12),
+        relief="flat",
+        height=20,
+    )
+    output_box.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+
+    # Eingabefeld und Senden-Button
+    input_frame = tk.Frame(window, bg=BACKGROUND_COLOR)
+    input_frame.pack(padx=10, pady=5, fill=tk.X)
+
+    input_box = tk.Entry(
+        input_frame, bg=INPUT_AREA_COLOR, fg=TEXT_COLOR, font=("Arial", 12), relief="flat"
+    )
+    input_box.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5)
+
+    send_button = tk.Button(
+        input_frame,
+        text="Senden",
+        bg=BUTTON_COLOR,
+        fg=BUTTON_TEXT_COLOR,
+        font=("Arial", 12),
+        relief="flat",
+    )
+    send_button.pack(side=tk.RIGHT, padx=5)
+
+    # Buttons für Server und Client
+    button_frame = tk.Frame(window, bg=BACKGROUND_COLOR)
+    button_frame.pack(padx=10, pady=5)
+
+    server_button = tk.Button(
+        button_frame,
+        text="Server starten",
+        bg=BUTTON_COLOR,
+        fg=BUTTON_TEXT_COLOR,
+        font=("Arial", 12),
+        relief="flat",
+        command=lambda: start_server("0.0.0.0", 12345, output_box),
+    )
+    server_button.pack(side=tk.LEFT, padx=5)
+
+    client_button = tk.Button(
+        button_frame,
+        text="Mit Server verbinden",
+        bg=BUTTON_COLOR,
+        fg=BUTTON_TEXT_COLOR,
+        font=("Arial", 12),
+        relief="flat",
+        command=lambda: start_client("127.0.0.1", 12345, output_box),
+    )
+    client_button.pack(side=tk.RIGHT, padx=5)
+
+    # Nachricht senden
+    def send_current_message():
+        nonlocal client_socket
+        if client_socket:
+            send_message(client_socket, input_box.get(), input_box, output_box)
+
+    client_socket = None  # Placeholder für die Verbindung
+    send_button.config(command=send_current_message)
+
+    # Starte GUI
+    window.mainloop()
+
+
+if __name__ == "__main__":
+    start_chat_overlay()
