@@ -1,8 +1,7 @@
 import socket
 import threading
 import tkinter as tk
-from tkinter.scrolledtext 
-import ScrolledText
+from tkinter.scrolledtext import ScrolledText
 
 # Farben entsprechend dem Design im Bild
 BACKGROUND_COLOR = "#2E0249"
@@ -142,7 +141,6 @@ def start_chat_overlay():
 
     # Starte GUI
     window.mainloop()
-
 
 if __name__ == "__main__":
     start_chat_overlay()
