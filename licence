@@ -1,0 +1,72 @@
+import tkinter as tk
+from tkinter import filedialog, messagebox
+
+def create_ei_cfg():
+    edition = entry_edition.get()
+    channel = entry_channel.get()
+    vl = "1" if var_vl.get() else "0"
+    
+    ei_cfg_content = f"""[EditionID]
+{edition}
+
+[Channel]
+{channel}
+
+[VL]
+{vl}
+"""
+    save_file("ei.cfg", ei_cfg_content)
+
+def create_pid_txt():
+    pid_key = entry_pid.get()
+    if not pid_key:
+        messagebox.showwarning("Fehlender Key", "Bitte einen Produktschlüssel eingeben.")
+        return
+    
+    pid_txt_content = f"""[PID]
+Value={pid_key}
+"""
+    save_file("PID.txt", pid_txt_content)
+
+def save_file(filename, content):
+    file_path = filedialog.asksaveasfilename(
+        defaultextension=".txt" if filename.endswith(".txt") else ".cfg",
+        filetypes=[("Textdateien", "*.txt"), ("Konfigurationsdateien", "*.cfg"), ("Alle Dateien", "*.*")],
+        initialfile=filename
+    )
+    if file_path:
+        with open(file_path, "w") as file:
+            file.write(content)
+        messagebox.showinfo("Erfolg", f"{filename} wurde erfolgreich erstellt!")
+
+# Hauptfenster erstellen
+root = tk.Tk()
+root.title("ei.cfg und PID.txt Generator")
+
+# Labels und Eingabefelder für ei.cfg
+tk.Label(root, text="ei.cfg erstellen").grid(row=0, column=0, columnspan=2, pady=10)
+tk.Label(root, text="Edition (z. B. Professional):").grid(row=1, column=0, sticky="e")
+entry_edition = tk.Entry(root)
+entry_edition.grid(row=1, column=1, padx=10, pady=5)
+entry_edition.insert(0, "Professional")  # Standardwert
+
+tk.Label(root, text="Channel (Retail/OEM):").grid(row=2, column=0, sticky="e")
+entry_channel = tk.Entry(root)
+entry_channel.grid(row=2, column=1, padx=10, pady=5)
+entry_channel.insert(0, "Retail")  # Standardwert
+
+var_vl = tk.BooleanVar(value=False)  # Standardwert für VL
+tk.Checkbutton(root, text="Volumenlizenz (VL)", variable=var_vl).grid(row=3, column=1, sticky="w")
+
+tk.Button(root, text="ei.cfg erstellen", command=create_ei_cfg).grid(row=4, column=0, columnspan=2, pady=10)
+
+# Labels und Eingabefelder für PID.txt
+tk.Label(root, text="PID.txt erstellen").grid(row=5, column=0, columnspan=2, pady=10)
+tk.Label(root, text="Produktschlüssel (Key):").grid(row=6, column=0, sticky="e")
+entry_pid = tk.Entry(root)
+entry_pid.grid(row=6, column=1, padx=10, pady=5)
+
+tk.Button(root, text="PID.txt erstellen", command=create_pid_txt).grid(row=7, column=0, columnspan=2, pady=10)
+
+# Programm starten
+root.mainloop()
